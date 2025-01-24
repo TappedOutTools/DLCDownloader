@@ -1,0 +1,66 @@
+on:
+  push:
+    tags:
+      - '**'
+
+jobs:
+  publish-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Install dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: |
+          cd DLCDownloader
+          dotnet build --configuration Release --no-restore
+          dotnet publish -c Release -o ../DLCDownloader-linux -r linux-x64
+
+      - name: Tar files
+        run: |
+          cd DLCDownloader-linux
+          tar -cvf DLCDownloader-linux.tar *
+          gzip DLCDownloader-linux.tar
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: DLCDownloader-linux/DLCDownloader-linux.tar.gz
+          token: ${{ secrets.PAT }}
+
+  publish-windows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Install dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: |
+          cd DLCDownloader
+          dotnet build --configuration Release --no-restore
+          dotnet publish -c Release -o ../DLCDownloader-windows -r win-x64
+
+      - name: Zip Files
+        run: |
+          Compress-Archive -Path 'DLCDownloader-windows/*' -DestinationPath 'DLCDownloader-windows.zip'
+        shell: pwsh
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: DLCDownloader-windows.zip
+          token: ${{ secrets.PAT }}

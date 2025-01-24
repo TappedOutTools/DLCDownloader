@@ -1,0 +1,21 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLCDownloader", "DLCDownloader\DLCDownloader.csproj", "{833141C9-22B0-47A5-B823-7A1345E50210}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{3797214F-DCBF-4DE6-B506-6C9FCC879C2F}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{833141C9-22B0-47A5-B823-7A1345E50210}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{833141C9-22B0-47A5-B823-7A1345E50210}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{833141C9-22B0-47A5-B823-7A1345E50210}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{833141C9-22B0-47A5-B823-7A1345E50210}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
